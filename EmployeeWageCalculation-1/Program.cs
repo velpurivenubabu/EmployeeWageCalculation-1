@@ -14,19 +14,19 @@
             //UC1-EmployeeAttandenance
             Random random = new Random();
             int empAttandence = random.Next(0, 3);
-            if (IS_FULL_TIME == empAttandence)
+            switch (empAttandence)
             {
-                Console.WriteLine("Fulltime employee is prasent");
-                empHrs = 8;
-            }
-            else if (IS_PART_TIME == empAttandence)
-            {
-                Console.WriteLine("Parttime employee is prasent");
-                empHrs = 4;
-            }
-            else
-            {
-                Console.WriteLine("employee attence is absent");
+                case IS_FULL_TIME:
+                    empHrs = 8;
+                    break;
+                case IS_PART_TIME:
+                    empHrs = 4;
+                    break;
+                default:
+                    empHrs = 0;
+                    break;
+
+
             }
             int empWage = EMP_RATE_PER_HOUR * empHrs;
             Console.WriteLine("Employee wage is : " + empWage);
