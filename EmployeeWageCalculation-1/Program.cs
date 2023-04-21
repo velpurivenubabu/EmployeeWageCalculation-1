@@ -6,23 +6,20 @@ namespace EmployeeWageCalculation_1
     {
         class EmployeeWage//creating the employee class
         {
-            public void EmployeeWageCalculation()//Method
+            
+            public void EmployeeWageCalculation(string companyName, int empRateHr, int numberOfWorkingDays,int maxWorkingHours)//Method
             {
                 int day = 1;
                 int totalHrs = 0;
                 int empWage = 0;
                 int empHrs = 0;
                 const int IS_FULL_TIME = 1;
-                const int IS_PART_TIME = 2;
-                const int EMP_RATE_PER_HOUR = 20;
-                int NUMBER_OF_WORKING_DAYS = 20;
-                const int MAX_WORKING_HRS = 100;
+                const int IS_PART_TIME = 2;              
                 int total_Wage = 0;
                 //Welcome message
-                Console.WriteLine("Welcome to Employee Wage Computation Problem Statement");
                 //UC1-EmployeeAttandenance
                 Random random = new Random();
-                while (day <= NUMBER_OF_WORKING_DAYS && totalHrs < MAX_WORKING_HRS)
+                while (day <= numberOfWorkingDays && totalHrs < maxWorkingHours)
                 {
                     int empAttandence = random.Next(0, 3);
                     switch (empAttandence)
@@ -39,21 +36,24 @@ namespace EmployeeWageCalculation_1
 
 
                     }
-                    empWage = EMP_RATE_PER_HOUR * empHrs;
-                    Console.WriteLine("Employee wage for day {0} and  {1} hrs is :{2} ", day, empHrs, empWage);
+                    empWage = empRateHr * empHrs;
+                   // Console.WriteLine("Employee wage for day {0} and  {1} hrs is :{2} ", day, empHrs, empWage);
                     total_Wage += empWage;
                     day++;
                     totalHrs += empHrs;
                 }
 
-                Console.WriteLine("TotalWage for {0} days and {1} hrs is {2}", (day - 1), totalHrs, total_Wage);
+                Console.WriteLine("For {0} TotalWage for {1} days and {2} hrs is {3}", companyName,(day - 1), totalHrs, total_Wage);
             }
         }
         static void Main(string[] args)
         {
+            Console.WriteLine("Welcome to Employee Wage Computation Problem Statement");
             EmployeeWage EmployeeObj= new EmployeeWage();// Creating the Object ofthe class
-            EmployeeObj.EmployeeWageCalculation();//Calling The Class method through EmployeeObj
-
+            EmployeeObj.EmployeeWageCalculation("Deloitte",40,23,60);//Calling The Class method through EmployeeObj
+            EmployeeObj.EmployeeWageCalculation("Wipro", 30, 25, 80);
+            EmployeeObj.EmployeeWageCalculation("Infosis", 20, 35, 70);
+            EmployeeObj.EmployeeWageCalculation("TCS", 40, 15, 50);
         }
     }
 }
