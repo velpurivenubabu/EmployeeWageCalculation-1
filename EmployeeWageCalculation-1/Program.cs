@@ -4,18 +4,32 @@ namespace EmployeeWageCalculation_1
 {
     internal class Program
     {
-        class EmployeeWage//creating the employee class
+       public class EmployeeWageBuilderObject//creating the employee class
         {
-            
-            public void EmployeeWageCalculation(string companyName, int empRateHr, int numberOfWorkingDays,int maxWorkingHours)//Method
+            const int IS_FULL_TIME = 1;
+            const int IS_PART_TIME = 2;
+            private string companyName;
+            private int empRateHr;
+            private  int numberOfWorkingDays;
+            private int maxWorkingHours;
+            private int empWage;
+            public EmployeeWageBuilderObject(string companyName, int empRateHr, int numberOfWorkingDays, int maxWorkingHours)
+            {
+                this.companyName = companyName;
+                this.empRateHr = empRateHr;
+                this.numberOfWorkingDays = numberOfWorkingDays;
+                this.maxWorkingHours = maxWorkingHours;
+                
+            }
+
+            public void EmployeeWageCalculation ()//Method
             {
                 int day = 1;
                 int totalHrs = 0;
-                int empWage = 0;
+               //int empWage = 0;
                 int empHrs = 0;
-                const int IS_FULL_TIME = 1;
-                const int IS_PART_TIME = 2;              
-                int total_Wage = 0;
+                            
+                
                 //Welcome message
                 //UC1-EmployeeAttandenance
                 Random random = new Random();
@@ -38,22 +52,32 @@ namespace EmployeeWageCalculation_1
                     }
                     empWage = empRateHr * empHrs;
                    // Console.WriteLine("Employee wage for day {0} and  {1} hrs is :{2} ", day, empHrs, empWage);
-                    total_Wage += empWage;
+                    empWage += empWage;
                     day++;
                     totalHrs += empHrs;
+                    
                 }
 
-                Console.WriteLine("For {0} TotalWage for {1} days and {2} hrs is {3}", companyName,(day - 1), totalHrs, total_Wage);
+                Console.WriteLine("For {0} TotalWage for {1} days and Working Hours {2} hrs is {3}", companyName, (day - 1), totalHrs, empWage);
+            }
+            public string toString()
+            {
+                return "Total Emp Wage for company : " + this.companyName + " is : " + this.empWage;
             }
         }
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Employee Wage Computation Problem Statement");
-            EmployeeWage EmployeeObj= new EmployeeWage();// Creating the Object ofthe class
-            EmployeeObj.EmployeeWageCalculation("Deloitte",40,23,60);//Calling The Class method through EmployeeObj
-            EmployeeObj.EmployeeWageCalculation("Wipro", 30, 25, 80);
-            EmployeeObj.EmployeeWageCalculation("Infosis", 20, 35, 70);
-            EmployeeObj.EmployeeWageCalculation("TCS", 40, 15, 50);
+            EmployeeWageBuilderObject deloitte = new EmployeeWageBuilderObject("Deloitte", 100, 23, 60);// Creating the Object ofthe class
+            deloitte.EmployeeWageCalculation();
+            Console.WriteLine(deloitte.toString());
+            EmployeeWageBuilderObject wipro = new EmployeeWageBuilderObject("Wipro", 900, 23, 60);// Creating the Object ofthe class
+            wipro.EmployeeWageCalculation();
+            Console.WriteLine(wipro.toString());
+            EmployeeWageBuilderObject tcs = new EmployeeWageBuilderObject("Wipro", 600, 23, 60);// Creating the Object ofthe class
+            tcs.EmployeeWageCalculation();
+            Console.WriteLine(tcs.toString());
+            
         }
     }
 }
