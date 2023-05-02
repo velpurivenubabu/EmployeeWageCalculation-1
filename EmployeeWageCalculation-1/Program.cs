@@ -35,24 +35,24 @@ namespace EmployeeWageCalculation_1
                 public const int IS_PART_TIME = 1;
                 public const int IS_FULL_TIME = 2;
                 private int numOfCompanies = 0;
-                private CompanyEmpWage[] companyEmpWageArray;
-
+                //private CompanyEmpWage[] companyEmpWageArray;
+                private List<CompanyEmpWage> list;
                 public EmpWageBuilderArray()
                 {
-                    this.companyEmpWageArray = new CompanyEmpWage[5];
+                    this.list = new List<CompanyEmpWage>();
                 }
                 public void addCompanyEmpWage(string company, int empRatePerHour, int numberOfWorkingDays, int maxHoursPerMonth)
                 {
-                    companyEmpWageArray[this.numOfCompanies] = new CompanyEmpWage(company, empRatePerHour, numberOfWorkingDays, maxHoursPerMonth);
+                    CompanyEmpWage companyList = new CompanyEmpWage(company, empRatePerHour, numberOfWorkingDays, maxHoursPerMonth);
+                    list[numOfCompanies] = companyList;
                     numOfCompanies++;
-
                 }
                 public void computeEmpWage()
                 {
                     for (int i = 0; i < numOfCompanies; i++)
                     {
-                        companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(this.companyEmpWageArray[i]));
-                        Console.WriteLine(this.companyEmpWageArray[i].toString());
+                        list[i].setTotalEmpWage(this.computeEmpWage(this.list[i]));
+                        Console.WriteLine(this.list[i].toString());
                     }
                 }
 
